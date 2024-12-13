@@ -6,7 +6,7 @@ import { UserDetailContext } from "./_context/UserDetailContex";
 
 function Provider({ children }) {
   const { user } = useUser();
-  const [userDetail, setUserDetail] = useState([])
+  const [userDetail, setUserDetail] = useState({});
 
   useEffect(() => {
     user && saveUserInformation();
@@ -15,19 +15,21 @@ function Provider({ children }) {
   const saveUserInformation = async () => {
     console.log(user);
     const result = await axios.post("/api/user", {
-      user:{
+      user: {
         fullName: user.fullName,
-        email: user.primaryEmailAddress.emailAddress
-      }
+        email: user.primaryEmailAddress.emailAddress,
+      },
     });
 
-    setUserDetail(result.data);
+    console.log(result.data);
+
+    setUserDetail(result.data[0]);
   };
   return (
-    <UserDetailContext value={{userDetail, setUserDetail}}>
-  <div>{children}</div>
-  </UserDetailContext>
-);
+    <UserDetailContext value={{ userDetail, setUserDetail }}>
+      <div>{children}</div>
+    </UserDetailContext>
+  );
 }
 
 export default Provider;
