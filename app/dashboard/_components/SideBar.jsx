@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { UserDetailContext } from "@/app/_context/UserDetailContex";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import CreateButton from "./CreateButton";
 
 const menuOption = [
   {
@@ -38,6 +39,7 @@ function SideBar() {
       </div>
 
       <ul className="mt-7 px-2">
+        <CreateButton />
         {menuOption.map((item, index) => (
           <Link key={index} href={item.path}>
             <li
