@@ -1,8 +1,9 @@
 "use client";
+import { VideoFrameContext } from "@/app/_context/VideoFrameContext";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const defaultFrame = {
   image: "/footage.png",
@@ -14,6 +15,7 @@ const defaultFrame = {
 function TrackList() {
   const [frameList, setFrameList] = useState([defaultFrame]);
   const [selectedFrame, setSelectedFrame] = useState(0);
+  const { videoFrames, setVideoFrames } = useContext(VideoFrameContext);
   const addNewFrame = () => {
     setFrameList((prev) => [...prev, defaultFrame]);
   };
@@ -23,6 +25,19 @@ function TrackList() {
       prev.filter((item, index) => index !== indexToRemove)
     );
   };
+
+  useEffect(() => {
+    let totalDuration = 0;
+    frameList.forEach((frame) => {
+      totalDuration = totalDuration + frame.duration;
+    });
+
+    setVideoFrames({
+      totalDuration: totalDuration,
+      frameList: frameList,
+      selectedFrame:selectedFrame
+    });
+  }, [frameList, selectedFrame]);
   return (
     <div className="p-5 bg-slate-900/60 rounded-xl">
       <div className="max-h-[60vh] overflow-y-scroll scrollbar-hide">
@@ -43,7 +58,10 @@ function TrackList() {
             />
             <h2 className="line-clamp-2 text-xs">{item.text}</h2>
             {selectedFrame == index && (
-              <Trash2 className="absolute top-2 right-2 text-red-500" onClick={() => removeFrame(index)}/>
+              <Trash2
+                className="absolute top-2 right-2 text-red-500"
+                onClick={() => removeFrame(index)}
+              />
             )}
           </div>
         ))}
