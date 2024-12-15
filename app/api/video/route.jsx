@@ -42,5 +42,7 @@ export async function GET(req) {
     .from(VIDEO_RAW_TABLE)
     .where(eq(VIDEO_RAW_TABLE.videoId, videoId));
 
+    console.log(result);
+
   return NextResponse.json(result[0]);
 }

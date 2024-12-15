@@ -8,9 +8,12 @@ import React, { useContext, useEffect, useState } from "react";
 const defaultFrame = {
   image: "/footage.png",
   text: "Hello World",
-  textColor: "black",
+  textColor: "#fff",
   fontSize: 20,
   duration: 2,
+  fontFamily: "Bungee",
+  bgColor:"#000",
+  animation:"zoomIn"
 };
 function TrackList() {
   const [frameList, setFrameList] = useState([defaultFrame]);
