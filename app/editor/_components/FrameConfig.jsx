@@ -6,12 +6,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Layers, LetterText, SwatchBook } from "lucide-react";
+import { Layers, LetterText, Smile, SwatchBook } from "lucide-react";
 import TextArea from "./TextArea";
 import SliderField from "./SliderField";
 import DropDown from "./DropDown";
 import ColorPickerField from "./ColorPickerField";
 import BackgroundField from "./BackgroundField";
+
+import EmojisField from "./EmojisField";
 import { VideoFrameContext } from "@/app/_context/VideoFrameContext";
 
 import { AnimationList, FontList } from "./../../_data/List";
@@ -117,11 +119,55 @@ function FrameConfig() {
           </AccordionTrigger>
           <AccordionContent>
             <DropDown
-            defaultValue={frame?.animation}
+              defaultValue={frame?.animation}
               label={"Text Animation"}
               options={AnimationList}
-              handleInputChange={(value) => handleInputChange("animation", value)}
+              handleInputChange={(value) =>
+                handleInputChange("animation", value)
+              }
             />
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="sticker">
+          <AccordionTrigger>
+            <span className="flex items-center gap-2">
+              <Smile />
+              Sticker
+            </span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <EmojisField
+              handleInputChange={(value) => handleInputChange("sticker", value)}
+            />
+            <SliderField
+              defaultValue={frame?.stickerSize ?? "0.5"}
+              label={"Size"}
+              handleInputChange={(value) =>
+                handleInputChange("stickerSize", value)
+              }
+              max={4}
+              step={0.5}
+            />
+
+            <div className="grid grid-cols-2 gap-3 mt-3">
+              <SliderField
+                defaultValue={frame?.stickerPositionX ?? "100"}
+                label={"PositionX"}
+                max={200}
+                handleInputChange={(value) =>
+                  handleInputChange("stickerPositionX", value)
+                }
+              />
+
+              <SliderField
+                defaultValue={frame?.stickerPositionY ?? "100"}
+                label={"PositionY"}
+                handleInputChange={(value) =>
+                  handleInputChange("stickerPositionY", value)
+                }
+              />
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

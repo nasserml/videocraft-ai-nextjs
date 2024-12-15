@@ -36,7 +36,25 @@ function RemotionComposition({ frameList }) {
         const duration = frame.duration * 30;
 
         return (
-          <Sequence key={index} from={fromFrame} durationInFrames={duration}>
+          <Sequence
+            key={index}
+            from={fromFrame}
+            durationInFrames={duration}
+            style={{ background: frame.bgColor ?? "#000" }}
+          >
+            <AbsoluteFill>
+              {frame?.sticker && (
+                <img
+                  src={frame?.sticker}
+                  alt="emoji"
+                  width={50}
+                  height={50}
+                  style={{
+                    transform: `scale(${frame?.stickerSize}) translateX(${frame?.stickerPositionX}px) translateY(${frame?.stickerPositionY}px)`,
+                  }}
+                />
+              )}
+            </AbsoluteFill>
             <AbsoluteFill
               style={{
                 display: "flex",
@@ -45,7 +63,6 @@ function RemotionComposition({ frameList }) {
                 fontFamily: frame?.fontFamily ?? "Bungee",
                 width: width,
                 height: height,
-                background: frame.bgColor ?? "#000",
               }}
             >
               <h2
@@ -54,7 +71,7 @@ function RemotionComposition({ frameList }) {
                     frame?.animation,
                     currentFrame,
                     fps,
-                    fromFrame, 
+                    fromFrame,
                     width,
                     height
                   )}`,
@@ -69,7 +86,9 @@ function RemotionComposition({ frameList }) {
         );
       })}
 
-     {videoFrames?.music && <Audio volume={0.5} src={staticFile(videoFrames?.music)} />}
+      {videoFrames?.music && (
+        <Audio volume={0.5} src={staticFile(videoFrames?.music)} />
+      )}
     </AbsoluteFill>
   );
 }

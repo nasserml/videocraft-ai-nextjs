@@ -87,7 +87,7 @@ function RemotionPlayer() {
 
           <div className="-mt-3">
             <DropDown
-              defaultValue={"None"}
+              defaultValue={videoFrames?.music}
               options={MusicList}
               handleInputChange={(value) => handleInputChange("music", value)}
             />
