@@ -12,8 +12,8 @@ const defaultFrame = {
   fontSize: 20,
   duration: 2,
   fontFamily: "Bungee",
-  bgColor:"#000",
-  animation:"zoomIn"
+  bgColor: "#000",
+  animation: "zoomIn",
 };
 function TrackList() {
   const [frameList, setFrameList] = useState([defaultFrame]);
@@ -35,18 +35,23 @@ function TrackList() {
       totalDuration = totalDuration + frame.duration;
     });
 
-    setVideoFrames({
+    setVideoFrames((prev) => ({
+      ...prev,
       totalDuration: totalDuration,
       frameList: frameList,
-      selectedFrame:selectedFrame
-    });
+      selectedFrame: selectedFrame,
+    }));
   }, [frameList, selectedFrame]);
 
-  useEffect(()=>{
-    if(videoFrames && videoFrames?.frameList !== frameList && videoFrames?.frameList?.length > 0) {
-      setFrameList(videoFrames?.frameList)
+  useEffect(() => {
+    if (
+      videoFrames &&
+      videoFrames?.frameList !== frameList &&
+      videoFrames?.frameList?.length > 0
+    ) {
+      setFrameList(videoFrames?.frameList);
     }
-  },[videoFrames])
+  }, [videoFrames]);
   return (
     <div className="p-5 bg-slate-900/60 rounded-xl">
       <div className="max-h-[60vh] overflow-y-scroll scrollbar-hide">

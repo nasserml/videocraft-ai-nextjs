@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import {
   AbsoluteFill,
+  Audio,
   Sequence,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -11,9 +13,12 @@ import * as Anton from "@remotion/google-fonts/Anton";
 import * as Parisienne from "@remotion/google-fonts/Parisienne";
 import * as Pacifico from "@remotion/google-fonts/Pacifico";
 import { TextAnimation } from "./../../_data/Animations";
+import { VideoFrameContext } from "@/app/_context/VideoFrameContext";
 
 function RemotionComposition({ frameList }) {
   const { width, height, fps } = useVideoConfig();
+  const { videoFrames, setVideoFrames } = useContext(VideoFrameContext);
+
   const currentFrame = useCurrentFrame();
   let trackFrame = 0;
 
@@ -63,6 +68,8 @@ function RemotionComposition({ frameList }) {
           </Sequence>
         );
       })}
+
+     {videoFrames?.music && <Audio volume={0.5} src={staticFile(videoFrames?.music)} />}
     </AbsoluteFill>
   );
 }

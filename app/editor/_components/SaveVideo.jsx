@@ -25,7 +25,6 @@ function SaveVideo() {
 
   const GetVideoData = async () => {
     const result = await axios.get("/api/video?videoId=" + videoid);
-    console.log(result.data);
     setVideoFrames(result.data.videoData);
   };
 
