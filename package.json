@@ -25,17 +25,21 @@
     "drizzle-orm": "^0.38.1",
     "lucide-react": "^0.468.0",
     "next": "15.1.0",
+    "next-themes": "^0.4.4",
     "react": "^18",
     "react-dom": "^18",
     "remotion": "4.0.240",
+    "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid4": "^2.0.3"
   },
   "devDependencies": {
     "@types/react": "18.3.16",
     "drizzle-kit": "^0.30.0",
     "postcss": "^8",
+    "shadcn-ui": "^0.9.4",
     "tailwindcss": "^3.4.1",
     "typescript": "5.7.2"
   }

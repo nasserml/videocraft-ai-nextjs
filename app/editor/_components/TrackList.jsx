@@ -28,7 +28,7 @@ function TrackList() {
 
   useEffect(() => {
     let totalDuration = 0;
-    frameList.forEach((frame) => {
+    frameList?.forEach((frame) => {
       totalDuration = totalDuration + frame.duration;
     });
 
@@ -38,10 +38,16 @@ function TrackList() {
       selectedFrame:selectedFrame
     });
   }, [frameList, selectedFrame]);
+
+  useEffect(()=>{
+    if(videoFrames && videoFrames?.frameList !== frameList && videoFrames?.frameList?.length > 0) {
+      setFrameList(videoFrames?.frameList)
+    }
+  },[videoFrames])
   return (
     <div className="p-5 bg-slate-900/60 rounded-xl">
       <div className="max-h-[60vh] overflow-y-scroll scrollbar-hide">
-        {frameList.map((item, index) => (
+        {frameList?.map((item, index) => (
           <div
             className={`relative flex flex-col items-center border-b p-2 rounded-lg gap-2 mt-3  cursor-pointer ${
               selectedFrame === index && "bg-blue-800/40 "
