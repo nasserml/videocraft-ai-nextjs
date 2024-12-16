@@ -35,6 +35,10 @@ function RemotionComposition({ frameList }) {
         trackFrame = trackFrame + frame.duration * 30;
         const duration = frame.duration * 30;
 
+        if (isNaN(fromFrame)) {
+          fromFrame = 0;
+        }
+
         return (
           <Sequence
             key={index}

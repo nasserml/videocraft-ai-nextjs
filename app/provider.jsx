@@ -15,7 +15,6 @@ function Provider({ children }) {
   }, [user]);
 
   const saveUserInformation = async () => {
-    console.log(user);
     const result = await axios.post("/api/user", {
       user: {
         fullName: user.fullName,
@@ -23,7 +22,6 @@ function Provider({ children }) {
       },
     });
 
-    console.log(result.data);
 
     setUserDetail(result.data[0]);
   };
