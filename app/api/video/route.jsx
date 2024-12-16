@@ -1,6 +1,6 @@
 import { db } from "@/configs/db";
 import { VIDEO_RAW_TABLE } from "@/configs/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -40,7 +40,7 @@ export async function GET(req) {
   if (userEmail) {
     const result = await db
       .select()
-      .from(VIDEO_RAW_TABLE)
+      .from(VIDEO_RAW_TABLE).orderBy(desc(VIDEO_RAW_TABLE.id))
       .where(eq(VIDEO_RAW_TABLE.createdBy, userEmail));
 
     return NextResponse.json(result);
