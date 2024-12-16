@@ -37,6 +37,7 @@ export const GenerateAIVideoData = inngest.createFunction(
           .update(VIDEO_RAW_TABLE)
           .set({
             videoData: generateVideoData,
+            status: "active",
           })
           .where(eq(VIDEO_RAW_TABLE.videoId, videoId))
           .returning(VIDEO_RAW_TABLE);

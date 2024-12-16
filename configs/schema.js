@@ -16,4 +16,5 @@ export const VIDEO_RAW_TABLE = pgTable("videoRaw", {
   createdBy: varchar()
     .notNull()
     .references(() => USER_TABLE.email),
+    status: varchar().default("pending"),
 });
