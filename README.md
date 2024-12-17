@@ -103,6 +103,8 @@ A big thanks to the amazing open-source projects that make this possible:
 - [Next.js](https://nextjs.org/)  
 - [Tailwind CSS](https://tailwindcss.com/)  
 - [Shadcn UI](https://ui.shadcn.com/)  
+- 🎥 [Video Tutorial by tubeguruji: "Build an AI Video Generator"](https://www.youtube.com/watch?v=lHFlpc5auDY)  
+
 
 ---
 
